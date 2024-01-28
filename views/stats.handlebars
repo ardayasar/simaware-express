@@ -115,14 +115,14 @@ async function initialize()
     await initializePatrons();
     await initializeMap(1);
 
-    layers_positions = {};
+    var layers_positions = {};
 
-    response = await fetchRetry('/livedata/airports.json');
-    airports = await response.json();
-    flights = await refreshFlights(filterName, filterCriteria);
-    eventsByAirport = await loadUpcomingEvents();
-    airlines = await loadAirlines();
-    aircraft = await loadAircraft();
+    let response = await fetchRetry('/livedata/airports.json');
+    let airports = await response.json();
+    let flights = await refreshFlights(filterName, filterCriteria);
+    let eventsByAirport = await loadUpcomingEvents();
+    let airlines = await loadAirlines();
+    let aircraft = await loadAircraft();
 
     await initializeFirData();
     initializeNexrad();
@@ -139,7 +139,7 @@ async function initialize()
 
 async function refreshStats()
 {
-    flights = await refreshFlights();
+    let flights = await refreshFlights();
 
     let html = '';
     $.each(flights, (idx, flight) => {
@@ -223,7 +223,7 @@ async function refreshStats()
         }
     })
 
-    airlinesSorted = [];
+    let airlinesSorted = [];
     for (var icao in airlineCount) {
         airlinesSorted.push([icao, airlineCount[icao]]);
     }
